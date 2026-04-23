@@ -1,12 +1,14 @@
-from airflow.sdk import dag, task
 from datetime import datetime
+
+from airflow.sdk import dag, task
+
 
 @dag(
     dag_id="simple_test",
     start_date=datetime(2024, 1, 1),
     schedule="@daily",
     catchup=False,
-    tags=["test"]
+    tags=["test"],
 )
 def simple_test():
 
@@ -23,5 +25,6 @@ def simple_test():
         print("end task")
 
     initial() >> middle() >> end()
+
 
 dag = simple_test()
